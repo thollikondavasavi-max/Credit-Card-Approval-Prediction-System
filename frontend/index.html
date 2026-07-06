@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Predict - AI Approval System</title>
+    <meta name="description" content="Automated credit card approval prediction system using machine learning.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="app-container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <h1>CreditPredict</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-target="customer-view">Self-Service</button>
+                <button class="nav-btn" data-target="analyst-view">Credit Analyst</button>
+                <button class="nav-btn" data-target="compliance-view">Compliance</button>
+            </nav>
+        </header>
+
+        <section id="customer-view" class="view-section active">
+            <div class="hero-text">
+                <h2>Check Your Eligibility Instantly</h2>
+                <p>Our AI model predicts your likelihood of credit card approval without impacting your credit score.</p>
+            </div>
+            
+            <form id="prediction-form" class="glass-panel">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="income">Annual Income ($)</label>
+                        <input type="number" id="income" required placeholder="e.g. 75000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="employment">Employment Duration (Years)</label>
+                        <input type="number" id="employment" required placeholder="e.g. 5" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="loan-balance">Existing Loan Balance ($)</label>
+                        <input type="number" id="loan-balance" required placeholder="e.g. 15000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="inquiries">Recent Credit Inquiries</label>
+                        <input type="number" id="inquiries" required placeholder="e.g. 1" min="0">
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label for="payment-status">Past Payment Status</label>
+                        <select id="payment-status" required>
+                            <option value="0">Good Standing (No past due)</option>
+                            <option value="1">High Risk (Past due/defaults)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="primary-btn" id="submit-btn">
+                    <span>Predict Approval</span>
+                    <div class="spinner hidden" id="spinner"></div>
+                </button>
+            </form>
+
+            <div id="result-container" class="result-card hidden">
+                <div class="result-header">
+                    <h3 id="result-title">Prediction Result</h3>
+                    <span id="result-badge" class="badge"></span>
+                </div>
+                <div class="result-details">
+                    <p>Approval Probability: <strong id="approval-prob">--%</strong></p>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="prob-fill"></div>
+                    </div>
+                    <p id="result-message" class="result-message"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Placeholder for other views to demonstrate multi-scenario capability -->
+       <section id="analyst-view" class="view-section hidden">
+
+    <div class="hero-text">
+        <h2>Batch Processing Results</h2>
+        <p>CSV upload processed through the ML model.</p>
+    </div>
+
+    <div class="glass-panel">
+
+        <input type="file" id="csv-file" accept=".csv" hidden>
+
+        <button class="primary-btn" id="connect-crm-btn">
+            Upload CSV
+        </button>
+
+        <br><br>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h4>Total Applications</h4>
+                <h1 id="total-count">0</h1>
+            </div>
+
+            <div class="stat-card">
+                <h4>Approved</h4>
+                <h1 id="approved-count">0</h1>
+            </div>
+
+            <div class="stat-card">
+                <h4>Rejected</h4>
+                <h1 id="rejected-count">0</h1>
+            </div>
+
+        </div>
+
+        <br>
+        <div id="crm-summary" style="display:none; margin-top:25px;">
+
+    <div class="summary-card">
+        <h3>Total Applications</h3>
+        <h1 id="total-count">0</h1>
+    </div>
+
+    <div class="summary-card">
+        <h3>Approved</h3>
+        <h1 id="approved-count">0</h1>
+    </div>
+
+    <div class="summary-card">
+        <h3>Rejected</h3>
+        <h1 id="rejected-count">0</h1>
+    </div>
+
+</div>
+
+<div id="crm-results"></div>
+
+        <div id="crm-results"></div>
+
+    </div>
+
+</section>
+        <section id="compliance-view" class="view-section hidden">
+            <div class="hero-text">
+                <h2>Compliance & Risk Screening</h2>
+                <p>Automatically filter out applicants with prohibitive risk markers or past-due histories.</p>
+            </div>
+            <div class="glass-panel empty-state">
+                <p>Compliance rule engine is active. All high-risk profiles are flagged.</p>
+                <button class="secondary-btn" id="flagged-btn">View Flagged Profiles</button>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

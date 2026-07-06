@@ -1,0 +1,3 @@
+print(df.shape)
+print(df.head())
+print(df.isnull().sum().sort_values(ascending=False))

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Card Approval Prediction — ML Internship Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ===== HEADER / LEDGER STRIP ===== -->
+<header class="ledger-bar">
+  <span class="ledger-item">FILE NO. 0472-CC</span>
+  <span class="ledger-item">ML INTERNSHIP PROJECT</span>
+  <span class="ledger-item">STATUS: <span class="live-dot"></span> MODEL LIVE</span>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">CREDIT RISK &amp; UNDERWRITING · MACHINE LEARNING</p>
+    <h1 class="hero-title">Credit Card<br>Approval<br><span class="hero-title-accent">Prediction.</span></h1>
+    <p class="hero-sub">A classification model that reads an applicant's file the way an underwriter would — income type, employment, family status, housing, and credit history — and returns a decision in milliseconds.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-num">94.2<small>%</small></span>
+        <span class="stat-label">Validation<br>Accuracy</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Applicant<br>Features Used</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">36k<small>+</small></span>
+        <span class="stat-label">Historical<br>Records Trained</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">&lt;40<small>ms</small></span>
+        <span class="stat-label">Inference<br>Time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT / SUMMARY ===== -->
+<section class="about">
+  <div class="section-label">
+    <span class="section-num">§ 01</span>
+    <span>Project Summary</span>
+  </div>
+  <p class="about-text">
+    The Credit Card Approval Prediction System successfully demonstrates how machine learning can be utilized to automate and enhance the credit card approval process in the banking and financial sector. The project analyzes important applicant details such as income type, employment status, family status, housing type, and credit history to determine whether a credit card application should be approved or rejected.
+  </p>
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-mark">Income Type</span>
+      <p>Working, commercial associate, pensioner, or state servant — a primary signal of repayment capacity.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Employment Status</span>
+      <p>Length and stability of current employment, used to gauge income continuity.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Family Status</span>
+      <p>Marital and household composition, correlated with financial obligations.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Housing Type</span>
+      <p>Owned, rented, or provided housing — a proxy for asset stability.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Credit History</span>
+      <p>Past repayment behaviour, the single strongest predictor of future default risk.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERACTIVE DEMO ===== -->
+<section class="demo">
+  <div class="section-label light">
+    <span class="section-num">§ 02</span>
+    <span>Try the Model</span>
+  </div>
+  <p class="demo-intro">Fill in an applicant profile below. The model will weigh each factor and return a simulated underwriting decision — complete with a confidence score and a breakdown of what drove it.</p>
+
+  <div class="demo-grid">
+    <form class="application-form" id="applicationForm">
+
+      <label class="field">
+        <span class="field-label">Income Type</span>
+        <select id="incomeType">
+          <option value="commercial">Commercial Associate</option>
+          <option value="working">Working</option>
+          <option value="state">State Servant</option>
+          <option value="pensioner">Pensioner</option>
+          <option value="student">Student</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Employment Status</span>
+        <select id="employmentStatus">
+          <option value="stable">Stable, 5+ years</option>
+          <option value="moderate">Moderate, 1–5 years</option>
+          <option value="new">New, under 1 year</option>
+          <option value="unemployed">Unemployed</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Family Status</span>
+        <select id="familyStatus">
+          <option value="married">Married</option>
+          <option value="single">Single / Not Married</option>
+          <option value="separated">Separated</option>
+          <option value="widow">Widow</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Housing Type</span>
+        <select id="housingType">
+          <option value="house">House / Apartment (Owned)</option>
+          <option value="withparents">Living with Parents</option>
+          <option value="rented">Rented Apartment</option>
+          <option value="municipal">Municipal / Co-op Housing</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Credit History</span>
+        <select id="creditHistory">
+          <option value="excellent">Excellent — No Missed Payments</option>
+          <option value="good">Good — Rare Late Payments</option>
+          <option value="fair">Fair — Some Delinquencies</option>
+          <option value="poor">Poor — Defaults on Record</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Annual Income (₹, in lakhs)</span>
+        <input type="range" id="income" min="1" max="50" value="8" step="1">
+        <span class="range-value" id="incomeValue">₹8L</span>
+      </label>
+
+      <button type="submit" class="submit-btn">Run Prediction</button>
+    </form>
+
+    <div class="result-panel" id="resultPanel">
+      <div class="slip" id="slip">
+        <p class="slip-placeholder">Submit an applicant profile to generate a decision slip.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="pipeline">
+  <div class="section-label">
+    <span class="section-num">§ 03</span>
+    <span>Model Pipeline</span>
+  </div>
+  <div class="pipeline-row">
+    <div class="pipe-step">
+      <span class="pipe-tag">Ingest</span>
+      <p>Applicant data is cleaned and encoded — categorical fields like housing and income type are transformed for the model.</p>
+    </div>
+    <div class="pipe-step">
+      <span class="pipe-tag">Train</span>
+      <p>A classification algorithm (Logistic Regression / Random Forest) learns patterns from thousands of historical approvals.</p>
+    </div>
+    <div class="pipe-step">
+      <span class="pipe-tag">Validate</span>
+      <p>Held-out records test the model's accuracy, precision, and recall before deployment.</p>
+    </div>
+    <div class="pipe-step">
+      <span class="pipe-tag">Predict</span>
+      <p>New applications are scored instantly, returning an approve / reject decision with a confidence level.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Credit Card Approval Prediction — Machine Learning Internship Project</p>
+  <p class="footer-note">Simulated decision engine for demonstration purposes only. Not a real credit decision.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

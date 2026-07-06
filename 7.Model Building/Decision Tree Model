@@ -1,0 +1,33 @@
+from sklearn.tree import DecisionTreeClassifier
+
+dt = DecisionTreeClassifier()
+dt.fit(X_train, y_train)
+ypred = dt.predict(X_test)
+print("***DecisionTreeClassifier***")
+print("Confusion Matrix")
+print(confusion_matrix(y_test, ypred))
+
+print("Classification Report")
+print(classification_report(y_test, ypred))
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import confusion_matrix, classification_report
+
+def d_tree(xtrain, xtest, ytrain, ytest):
+
+    dt = DecisionTreeClassifier()
+
+    # Train the model
+    dt.fit(xtrain, ytrain)
+
+    # Generate predictions
+    ypred = dt.predict(xtest)
+
+    print("***DecisionTreeClassifier***")
+
+    print("Confusion Matrix")
+    print(confusion_matrix(ytest, ypred))
+
+    print("Classification Report")
+    print(classification_report(ytest, ypred))
+
+    return dt, ypred

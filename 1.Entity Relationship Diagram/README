@@ -1,0 +1,173 @@
+Credit Card Approval Prediction System
+📌 Project Overview
+
+The Credit Card Approval Prediction System is a Machine Learning and Data Management project designed to analyze applicant information and predict whether a credit card application should be approved or rejected.
+
+The project uses applicant demographic details, employment information, financial history, and previous credit records to identify patterns that influence credit card approval decisions. The Entity Relationship Diagram (ERD) provides the database structure required to store and manage all relevant information efficiently.
+
+🎯 Project Objectives
+Predict credit card approval outcomes using machine learning algorithms.
+Analyze applicant financial and demographic profiles.
+Identify factors that influence approval or rejection decisions.
+Maintain historical records for future risk assessment.
+Support credit risk management and decision-making processes.
+🏗️ Database Design
+
+The database is designed using seven main entities:
+
+1. Applicant
+
+Stores personal, demographic, and financial information of applicants.
+
+Attributes:
+
+Applicant_ID (Primary Key)
+Gender
+Date_of_Birth
+Marital_Status
+Number_of_Dependents
+Education_Level
+Occupation_Type
+Income_Type
+Annual_Income
+Employment_Duration
+Housing_Type
+Phone_Number
+Email
+Current_Address
+Status
+2. Application
+
+Stores information related to credit card applications submitted by applicants.
+
+Attributes:
+
+Application_ID (Primary Key)
+Applicant_ID (Foreign Key)
+Application_Date
+Requested_Credit_Limit
+Purpose
+Application_Status
+Approval_Date
+3. Credit Decision
+
+Contains the final decision regarding an application.
+
+Attributes:
+
+Decision_ID (Primary Key)
+Application_ID (Foreign Key)
+Decision_Date
+Approval_Status
+Reason_Code
+Risk_Score
+4. Credit Card
+
+Stores approved credit card information.
+
+Attributes:
+
+Card_ID (Primary Key)
+Application_ID (Foreign Key)
+Card_Type
+Credit_Limit
+Interest_Rate
+Issue_Date
+Card_Status
+5. Credit History
+
+Maintains previous financial and borrowing records of applicants.
+
+Attributes:
+
+History_ID (Primary Key)
+Applicant_ID (Foreign Key)
+Loan_Type
+Account_Type
+Credit_Limit
+Outstanding_Amount
+Payment_History
+Default_Flag
+Record_Date
+6. Payment History
+
+Tracks repayment records associated with issued credit cards.
+
+Attributes:
+
+Payment_ID (Primary Key)
+Card_ID (Foreign Key)
+Payment_Date
+Amount_Paid
+Payment_Status
+Due_Amount
+7. Reference Data
+
+Stores master/reference values used across the system.
+
+Examples:
+
+Income Types
+Occupation Types
+| Relationship                     | Cardinality |
+| -------------------------------- | ----------- |
+| Applicant → Application          | One-to-Many |
+| Application → Credit Decision    | One-to-One  |
+| Application → Credit Card        | One-to-One  |
+| Credit Card → Payment History    | One-to-Many |
+| Applicant → Credit History       | One-to-Many |
+| Credit History → Credit Decision | Many-to-One |
+| Reference Data → Other Entities  | One-to-Many |
+
+Education Leve🤖 Machine Learning Workflow
+Data Collection
+Data Cleaning and Preprocessing
+Feature Engineering
+Exploratory Data Analysis (EDA)
+Model Training
+Model Evaluation
+Credit Approval Prediction
+Deployment
+🛠️ Technologies Used
+Python
+Pandas
+NumPy
+Matplotlib
+Seaborn
+Scikit-learn
+Jupyter Notebook / Google Colab
+Git and GitHub
+📊 Features Used for Prediction
+Gender
+Income Type
+Annual Income
+Employment Duration
+Education Level
+Marital Status
+Number of Dependents
+Credit History
+Outstanding Amount
+Default Records
+Requested Credit Limit
+📈 Expected Output
+
+The system predicts whether a credit card application should be:
+
+✅ Approved
+❌ Rejected
+
+Along with:
+
+Risk Score
+Approval Reason
+Credit Limit Recommendationls
+Approval Reason Codes
+Credit-Card-Approval-Prediction/
+│
+├── data/
+│   ├── credit_card_dataset.csv
+│
+├── notebooks/
+│   ├── Credit_Card_Approval_Prediction.ipynb
+│
+├── …

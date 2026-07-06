@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Approval Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+<div class="main-container">
+    <header>
+        <h1>Credit Card Approval Prediction</h1>
+        <p>AI-Powered Banking Decision Support System</p>
+    </header>
+
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('predict')">Prediction</button>
+        <button class="tab-btn" onclick="switchTab('metrics')">Model Metrics</button>
+    </div>
+
+    <!-- ========== PREDICTION TAB ========== -->
+    <div id="tab-predict" class="tab-content active">
+        <div class="card">
+            <form action="/predict" method="POST">
+                <h2>Personal Information</h2>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Gender</label>
+                        <select name="gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Age</label>
+                        <input type="number" name="age" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Children</label>
+                        <input type="number" name="children" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Family Members</label>
+                        <input type="number" step="0.1" name="family_members" required>
+                    </div>
+                </div>
+                <h2>Financial Information</h2>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Annual Income</label>
+                        <input type="number" name="income" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Income Type</label>
+                        <select name="income_type">
+                            <option>Working</option>
+                            <option>Commercial associate</option>
+                            <option>Pensioner</option>
+                            <option>State servant</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Years Employed</label>
+                        <input type="number" name="years_employed" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Education</label>
+                        <select name="education">
+                            <option>Secondary / secondary special</option>
+                            <option>Higher education</option>
+                            <option>Incomplete higher</option>
+                            <option>Lower secondary</option>
+                            <option>Academic degree</option>
+                        </select>
+                    </div>
+                </div>
+                <h2>Property Information</h2>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Own Car</label>
+                        <select name="car">
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Own House</label>
+                        <select name="realty">
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Housing Type</label>
+                        <select name="housing_type">
+                            <option>House / apartment</option>
+                            <option>With parents</option>
+                            <option>Municipal apartment</option>
+                            <option>Rented apartment</option>
+                            <option>Office apartment</option>
+                            <option>Co-op apartment</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Family Status</label>
+                        <select name="family_status">
+                            <option>Married</option>
+                            <option>Single / not married</option>
+                            <option>Civil marriage</option>
+                            <option>Separated</option>
+                            <option>Widow</option>
+                        </select>
+                    </div>
+                </div>
+                <h2>Professional Information</h2>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Occupation</label>
+                        <select name="occupation">
+                            <option>Laborers</option>
+                            <option>Core staff</option>
+                            <option>Managers</option>
+                            <option>Drivers</option>
+                            <option>Sales staff</option>
+                            <option>Medicine staff</option>
+                            <option>Security staff</option>
+                            <option>Cooking staff</option>
+                            <option>Cleaning staff</option>
+                            <option>Private service staff</option>
+                            <option>High skill tech staff</option>
+                            <option>HR staff</option>
+                            <option>IT staff</option>
+                            <option>Secretaries</option>
+                            <option>Realty agents</option>
+                            <option>Waiters/barmen staff</option>
+                            <option>Low-skill Laborers</option>
+                            <option>Unknown</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Work Phone</label>
+                        <select name="work_phone">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <h2>Contact Information</h2>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Mobile Available</label>
+                        <select name="mobile">
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Phone</label>
+                        <select name="phone">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box">
+                        <label>Email</label>
+                        <select name="email">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <div class="input-box"></div>
+                </div>
+                <button type="submit">Predict Credit Card Approval</button>
+                <button type="button" onclick="window.location.href='/'" class="reset-btn">Reset Form</button>
+            </form>
+
+            {% if prediction %}
+            <div class="result-card">
+                <h2>{{ prediction }}</h2>
+                <div class="score-box">
+                    <h3>Approval Confidence</h3>
+                    <div class="progress">
+                        <div class="progress-fill" style="width: {{ confidence }}%;">{{ confidence }}%</div>
+                    </div>
+                </div>
+                <div class="dashboard">
+                    <div class="dashboard-card">
+                        <h4>Approval</h4>
+                        <h2 style="color:#16a34a">{{ confidence }}%</h2>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>Rejection</h4>
+                        <h2 style="color:#dc2626">{{ rejection }}%</h2>
+                    </div>
+                    <div class="dashboard-card">
+                        <h4>Risk Level</h4>
+                        <h2 style="color:{{ risk_color }}">{{ risk }}</h2>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h3>AI Recommendation</h3>
+                    <p>{{ analysis }}</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Applicant Summary</h3>
+                    <ul>
+                        <li>Financial profile evaluated</li>
+                        <li>Credit history analysed</li>
+                        <li>Risk score generated</li>
+                        <li>Machine Learning prediction completed</li>
+                        <li>Decision recommendation generated</li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ========== METRICS TAB ========== -->
+    <div id="tab-metrics" class="tab-content">
+        <div class="card">
+            <h2 style="text-align:center;color:#1e3a8a;margin-bottom:20px;">Model Performance Dashboard</h2>
+
+            {% if metrics and metrics.get('Logistic Regression') %}
+            <div class="metrics-summary">
+                <div class="metric-stat-card">
+                    <div class="metric-icon">Training</div>
+                    <div class="metric-info">
+                        <h4>Training Samples</h4>
+                        <h3>{{ metrics.training_samples }}</h3>
+                    </div>
+                </div>
+                <div class="metric-stat-card">
+                    <div class="metric-icon">Testing</div>
+                    <div class="metric-info">
+                        <h4>Testing Samples</h4>
+                        <h3>{{ metrics.testing_samples }}</h3>
+                    </div>
+                </div>
+                <div class="metric-stat-card">
+                    <div class="metric-icon">Best</div>
+                    <div class="metric-info">
+                        <h4>Best Model</h4>
+                        <h3>{{ metrics.best_model }}</h3>
+                    </div>
+                </div>
+                <div class="metric-stat-card">
+                    <div class="metric-icon">Features</div>
+                    <div class="metric-info">
+                        <h4>Features Used</h4>
+                        <h3>{{ metrics.feature_count }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:30px;color:#1e3a8a;">Model Performance Comparison</h3>
+            <div class="table-wrapper">
+                <table class="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                            <th>ROC-AUC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for model in ['Logistic Regression', 'Decision Tree', 'Random Forest'] %}
+                        {% if metrics.get(model) %}
+                        <tr class="{% if metrics.best_model == model %}best-row{% endif %}">
+                            <td><strong>{{ model }}</strong> {% if metrics.best_model == model %}*{% endif %}</td>
+                            <td>{{ metrics[model].accuracy }}</td>
+                            <td>{{ metrics[model].precision }}</td>
+                            <td>{{ metrics[model].recall }}</td>
+                            <td>{{ metrics[model].f1_score }}</td>
+                            <td>{{ metrics[model].roc_auc }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top:35px;color:#1e3a8a;">Performance Visualizations</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <a href="/screenshots/model_comparison.png" target="_blank">
+                        <img src="/screenshots/model_comparison.png" alt="Model Comparison" loading="lazy">
+                    </a>
+                    <p>Model Performance Comparison</p>
+                </div>
+                <div class="gallery-item">
+                    <a href="/screenshots/confusion_matrices.png" target="_blank">
+                        <img src="/screenshots/confusion_matrices.png" alt="Confusion Matrices" loading="lazy">
+                    </a>
+                    <p>Confusion Matrices</p>
+                </div>
+                <div class="gallery-item">
+                    <a href="/screenshots/roc_curves.png" target="_blank">
+                        <img src="/screenshots/roc_curves.png" alt="ROC Curves" loading="lazy">
+                    </a>
+                    <p>ROC Curves</p>
+                </div>
+                <div class="gallery-item">
+                    <a href="/screenshots/feature_importance.png" target="_blank">
+                        <img src="/screenshots/feature_importance.png" alt="Feature Importance" loading="lazy">
+                    </a>
+                    <p>Feature Importance (Top 15)</p>
+                </div>
+                <div class="gallery-item">
+                    <a href="/screenshots/classification_report.png" target="_blank">
+                        <img src="/screenshots/classification_report.png" alt="Classification Report" loading="lazy">
+                    </a>
+                    <p>Classification Report</p>
+                </div>
+                <div class="gallery-item">
+                    <a href="/screenshots/data_distribution.png" target="_blank">
+                        <img src="/screenshots/data_distribution.png" alt="Data Distribution" loading="lazy">
+                    </a>
+                    <p>Data Distribution</p>
+                </div>
+            </div>
+            {% else %}
+            <h3 style="margin-top:10px;color:#1e3a8a;text-align:center;">Screenshots Gallery</h3>
+            <p style="text-align:center;color:#64748b;margin-bottom:25px;">
+                Training results, model performance visualizations, and data analysis screenshots
+            </p>
+            {% if screenshots %}
+            <div class="screenshots-gallery">
+                {% for shot in screenshots %}
+                <div class="screenshot-item">
+                    <div class="screenshot-img-wrapper">
+                        <a href="/screenshots/{{ shot.filename }}" target="_blank" title="Click to view full size">
+                            <img src="/screenshots/{{ shot.filename }}" alt="{{ shot.title }}" loading="lazy"
+                                 onerror="this.parentElement.parentElement.parentElement.style.display='none'">
+                            <div class="screenshot-overlay">
+                                <span>View Full Size</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="screenshot-info">
+                        <h3>{{ shot.title }}</h3>
+                        <p>{{ shot.desc }}</p>
+                        <span class="screenshot-badge">{{ shot.format }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-metrics">
+                <p>No training metrics or screenshots available yet.</p>
+                <p>Please run the training script first:</p>
+                <code>python src/train_model.py</code>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>Credit Card Approval Prediction System<br>Developed using Flask - Machine Learning - Scikit-learn - Python</p>
+    </footer>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

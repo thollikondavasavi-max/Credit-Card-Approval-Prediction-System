@@ -1,0 +1,37 @@
+from sklearn.preprocessing import LabelEncoder
+cg = LabelEncoder()
+oc = LabelEncoder()
+own_r = LabelEncoder()
+it = LabelEncoder()
+et = LabelEncoder()
+fs = LabelEncoder()
+ht = LabelEncoder()
+# The following code was commented out because the specified columns (e.g., 'CODE_GENDER', 'FLAG_OWN_CAR')
+# do not exist in the current 'df' DataFrame. Your 'df' DataFrame contains only numerical features.
+# df['CODE_GENDER'] = cg.fit_transform(
+#     df['CODE_GENDER']
+# )
+
+# df['FLAG_OWN_CAR'] = oc.fit_transform(
+#     df['FLAG_OWN_CAR']
+# )
+
+# df['FLAG_OWN_REALTY'] = own_r.fit_transform(
+#     df['FLAG_OWN_REALTY']
+# )
+
+# df['NAME_INCOME_TYPE'] = it.fit_transform(
+#     df['NAME_INCOME_TYPE']
+# )
+
+# df['NAME_EDUCATION_TYPE'] = et.fit_transform(
+#     df['NAME_EDUCATION_TYPE']
+# )
+
+# df['NAME_FAMILY_STATUS'] = fs.fit_transform(
+#     df['NAME_FAMILY_STATUS']
+# )
+
+# df['NAME_HOUSING_TYPE'] = ht.fit_transform(
+#     df['NAME_HOUSING_TYPE']
+# )

@@ -1,0 +1,9 @@
+df.drop_duplicates(keep='first', inplace=True)
+# Removed: df['OCCUPATION_TYPE'].fillna('Unknown', inplace=True) as the column does not exist and no missing values were found.
+output:
+0
+age	0.0
+income	0.0
+credit_score	0.0
+employment_years	0.0
+approved	0.0

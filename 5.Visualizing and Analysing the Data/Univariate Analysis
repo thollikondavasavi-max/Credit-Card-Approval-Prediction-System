@@ -1,0 +1,12 @@
+print('Value counts for the \'approved\' column:')
+print(df['approved'].value_counts())
+
+sns.set(rc={'figure.figsize': (8,6)})
+sns.countplot(
+    x='approved',
+    data=df,
+    palette='Set2'
+)
+plt.xticks(rotation=0)
+plt.title('Distribution of Credit Card Approval Status')
+plt.show()
