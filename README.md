@@ -69,3 +69,12 @@ The best-performing model has been integrated into a lightweight **Flask web app
    ```
    *Navigate to `http://127.0.0.1:5000` in your web browser to view the application.*
 
+
+## ☁️ Deployment (Render)
+
+This project is fully configured for deployment on Render as a Web Service.
+
+1. Connect your GitHub repository to Render.
+2. Ensure the **Build Command** is set to: `pip install -r requirements.txt`
+3. Ensure the **Start Command** is set to: `gunicorn main:app` (Render's default)
+4. Render will automatically detect the `main.py` entry point, install dependencies, and serve the full-stack application on a public URL.
